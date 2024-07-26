@@ -6,14 +6,27 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        otp: ['24.3', '25.1']
-        elixir: ['1.12.3', '1.13.4', '1.14']
+        os: ['ubuntu-22.04', 'windows-2022']
+        otp: ['24.3', '25.1', '26.2']
+        elixir: ['1.14', '1.15', '1.16']
         exclude:
-        - otp: '25.1'
-          elixir: '1.12.3'
+        - os: 'ubuntu-22.04'
+          otp: '26.2'
+          elixir: '1.14'
+        - os: 'windows-2022'
+          otp: '26.2'
+          elixir: '1.14'
+        include:
+        - os: 'ubuntu-22.04'
+          otp: '27.0.1'
+          elixir: '1.17.2'
+        - os: 'windows-2022'
+          otp: '27.0.1'
+          elixir: '1.17.2'
+
     steps:
       - uses: actions/checkout@v2
       - uses: erlef/setup-beam@v1
