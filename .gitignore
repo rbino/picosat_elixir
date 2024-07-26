@@ -23,6 +23,3 @@ erl_crash.dump
 picosat-*.tar
 
 mix.lock
-
-priv/*.so
-priv/*.o

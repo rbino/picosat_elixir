@@ -5,7 +5,7 @@
 
 init() ->
     PrivDir = code:priv_dir(picosat_elixir),
-    Path = filename:join(PrivDir, "picosat_nif"),
+    Path = filename:join([PrivDir, "host", "lib", "picosat_nif"]),
     ok = erlang:load_nif(Path, 0).
 
 
